@@ -1,0 +1,174 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'assets/images/favicon.png' %}" rel="icon" type="image/png">
+    <title>Upload Post</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/uikit.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/tailwind.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        
+</head>
+
+<body class="bg-gray-100">
+
+
+    <div id="wrapper" class="flex flex-col justify-between h-screen">
+
+        <!-- header-->
+        <div class="bg-white py-4 shadow dark:bg-gray-800">
+            <div class="max-w-6xl mx-auto">
+
+
+                <div class="flex items-center lg:justify-between justify-around">
+
+                    <a href="/">
+                       <b><h1 style="font-size: 1.5rem;">Game Media</h1></b>
+                    </a>
+
+                    <div class="capitalize flex font-semibold hidden lg:block my-2 space-x-3 text-center text-sm">
+                        
+                        <a href="/profile" class="bg-pink-500 pink-500 px-6 py-3 rounded-md shadow text-white">Profile</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Content-->
+        <div>
+            <div class="lg:p-12 max-w-md max-w-xl lg:my-0 my-12 mx-auto p-6 space-y-">
+                <h1 class="lg:text-3xl text-xl font-semibold  mb-6 text-center"> Upload Post</h1>
+                    <form action="uploadpost" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div uk-form-custom class="flex justify-center items-center">
+                        <input type="file" name="image_upload" id="image-upload" onchange="previewImage(event)">
+                        <label for="image-upload" class="button soft-warning small">Choose file</label>
+                    </div>
+                    <br>
+                    <div>
+                        <img id="image-preview" class="w-full" style="display: none;">
+                    </div>
+                    <br>
+                    <div>
+                        <textarea class="botton soft-warning small px-3 py-1" name="caption" placeholder="caption.."></textarea>
+                    </div>
+                    <br>
+                    <style>
+                        body{
+                            background: #eee;
+                        }
+                        .signupdiv{
+                            background: #fff;
+                            border: 1px solid #ddd;
+                            box-shadow: 1px 2px 3px #ccc;
+                            border-radius: 7px;
+                            text-align: center;
+                            width: 35%;
+                            display: block;
+                            margin: auto;
+                            margin-top: 100px;
+                        }
+                        #signupform{
+                            padding: 15px;
+                        }
+                        input, select{
+                            margin-bottom: 10px;
+                            height: 38px;
+                            border: 1px solid #ddd;
+                            padding-left: 10px;
+                        }
+                        input{
+                            width: 97%;
+                        }
+                        button, select{
+                            width: 100%;
+                        }
+                        button{
+                            height: 45px;
+                            background: #188c01;
+                            border: none;
+                            border-radius: 5px;
+                            color: #fff;
+                        }
+                        </style>
+                        <div class="form-group">
+                            <select class="form-control" name="Game" id="Game">  
+                            <option value="">Select Game</option>
+                            {% for app in games %}
+                            <option value="{{app.app_id}}?{{app.game_name}}">{{app.game_name}}</option>
+                            {% endfor %}
+                            </select>
+                        </div>
+
+                    <br>
+                    <input type="text" name="teammates" placeholder="teammates" class="bg-gray-200 mb-2 shadow-none dark:bg-gray-800" style="border: 1px solid #d3d5d8 ;">
+                    <input type="text" name="tags" placeholder="tags" class="bg-gray-200 mb-2 shadow-none dark:bg-gray-800" style="border: 1px solid #d3d5d8 ;">
+                    <div uk-form-custom class="flex justify-center items-center">
+                        <button class="button bg-blue-700" type="submit">Upload</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+
+        <div class="lg:mb-5 py-3 uk-link-reset">
+            <div class="flex flex-col items-center justify-between lg:flex-row max-w-6xl mx-auto lg:space-y-0 space-y-3">
+                <div class="flex space-x-2 text-gray-700 uppercase">
+                    <a href="#"> About</a>
+                    <a href="#"> Help</a>
+                    <a href="#"> Terms</a>
+                    <a href="#"> Privacy</a>
+                </div>
+                <p class="capitalize"> © copyright 2023 by Gamedia</p>
+            </div>
+        </div>
+
+    </div>
+    <script src="{% static 'assets/js/tippy.all.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/uikit.js' %}"></script>
+    <script src="{% static 'assets/js/simplebar.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        function previewImage(event) {
+            var input = event.target;
+            var imagePreview = document.getElementById('image-preview');
+    
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+    
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                };
+    
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+    <script>
+        $(function(){
+         $("#Game").select2();
+        }); 
+       </script>
+
+</body>
+
+
+</html>

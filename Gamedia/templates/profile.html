@@ -1,0 +1,402 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+	<title>Profile - {{user.username}}</title>
+   <!-- <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16"> -->
+    
+    <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/color.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/uikit.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/tailwind.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+	<!-- <span style="color: white; font-size: 27px; margin-right: 520px;"><b><u><a href="/">Home</a></u></b></span>	 -->
+<!--<div class="se-pre-con"></div>-->
+<div class="theme-layout">
+	
+	</div>
+	
+	<section>
+			<div class="feature-photo">
+				<figure><img src="{% static 'images/resources/banner.jpg' %}" alt=""></figure>
+				<form>
+					<div class="add-btn">
+					
+					<span style="color: white; font-size: 27px;"><b>{{post_count}} Post</b></span>
+					<span style="color: white; font-size: 27px;"><b><a href="{{user.username}}/followers?username={{profile.username}}">{{follower_count}} followers</a></b></span>
+					<span style="color: white; font-size: 27px;"><b><a href="{{user.username}}/following?username={{profile.username}}">{{following_count}} following</a></b></span>
+					<span style="color: white; font-size: 27px;"><b><a href="/">Home</a></b></span>	
+					<span style="color: white; font-size: 27px;"><b><a href="/settings">Settings</a></b></span>	
+					<span style="color: white; font-size: 27px;"><b><a href="/logout" style="color: red;">Logout</a></b></span>	
+					</div>
+				</form>
+
+				<!-- <form class="edit-phto">
+					<i class="fa fa-camera-retro"></i>
+					<label class="fileContainer">
+						Upload Cover Photo
+					<input type="file"/>
+					</label>
+				</form> -->
+				<div class="container-fluid">
+					<div class="row merged">
+						<div class="col-lg-2 col-sm-3">
+							<div class="user-avatar">
+								<figure>
+									<a href="/changeprofilepicture">
+									<img src="{{user.profile_image}}" style="height: 250px; width: 100%;" alt="">
+									<form class="edit-phto">
+										<i class="fa fa-camera-retro"></i>
+										<label class="fileContainer">
+											<a >Upload Profile Photo</a>
+										</label>
+									</form>
+								</a>
+								</figure>
+							</div>
+						</div>
+						<div class="col-lg-10 col-sm-9">
+							<div class="timeline-info">
+								<ul>
+									<li class="admin-name">
+									  <h5 style="color: black;white-space: nowrap; width: 110px; font-size: 27px;"><b>{{user.username}}</b><!--<i class="fa fa-check-circle" style="color: #48dbfb;" aria-hidden="true"></i>--></h5>
+									  <!--<span>Group Admin</span>-->
+									</li>
+									<!--<li>
+										<a class="" href="javascript:void(0)" title="" data-ripple="">Go live!</a>
+										<a class="" href="javascript:void(0)" title="" data-ripple="">Music</a>
+										<a class="" href="emporium/index-3.html" title="" data-ripple="">Emporium</a>
+										<a class="" href="fitness/index.html" title="" data-ripple="">Health Inspection</a>
+										<a class="" href="settings/account-setting.html" title="" data-ripple="">Settings</a>
+										<a class="" href="javascript:void(0)" title="" data-ripple="">Upload</a>
+										<a class="" href="time-line.html" title="" data-ripple="">time line</a>
+										<a class="" href="timeline-photos.html" title="" data-ripple="">Photos</a>
+										<a class="" href="timeline-videos.html" title="" data-ripple="">Videos</a>
+										<a class="" href="timeline-friends.html" title="" data-ripple="">Friends</a>
+										<a class="" href="timeline-groups.html" title="" data-ripple="">Groups</a>
+										<a class="" href="about.html" title="" data-ripple="">about</a>
+										<a class="" href="#" title="" data-ripple="">more</a>
+
+									</li>-->
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!-- top area -->
+		<section>
+			<div class="bio">
+				
+			</div>
+		</section>
+		
+	<section>
+		<div class="gap gray-bg">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row" id="page-contents">
+							<!-- <div class="col-lg-3">
+								<aside class="sidebar static">
+									
+									
+									
+								</aside>
+							</div> -->
+							<!-- sidebar -->
+							
+
+
+							<div class="container m-auto">
+
+								<!--<h1 class="lg:text-2xl text-lg font-extrabold leading-none text-gray-900 tracking-tight mb-5"> Feed </h1>--->
+				
+								<div class="lg:flex justify-center lg:space-x-10 lg:space-y-0 space-y-5">
+				
+									<!-- left sidebar-->
+									<div class="space-y-5 flex-shrink-0 lg:w-7/12">
+
+										<!-- posts-->
+										{% for post in posts reversed %}
+				
+										<div class="bg-white shadow rounded-md  -mx-2 lg:mx-0">
+					
+											<!-- post header-->
+											<div class="flex justify-between items-center px-4 py-3">
+												<div class="flex flex-1 items-center space-x-4">
+													<a href="#">
+														<div class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-0.5 rounded-full">  
+															<img src="{{post.profile_image}}" class="bg-gray-200 border border-white rounded-full w-8 h-8">
+														</div>
+													</a>
+													<span class="block capitalize font-semibold "> <a href="#">@{{post.username}}</a> </span>
+												</div>
+											  <div>
+												<a href="#"> <i class="icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 "></i> </a>
+												<div class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100  " uk-drop="mode: hover;pos: top-right">
+													
+													<ul class="space-y-1">
+														<li> 
+															<a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md ">
+															 <i class="uil-favorite mr-1"></i>  Add favorites 
+															</a> 
+														</li>
+														<li> 
+															<a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md ">
+															 <i class="uil-share-alt mr-1"></i> Share
+															</a> 
+														</li>
+													{% if post.username == user.username %}
+													  <li> 
+														  <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md ">
+														   <i class="uil-edit-alt mr-1"></i>  Edit Post 
+														  </a> 
+													  </li>
+													  <li> 
+														  <a href="#" class="flex items-center px-3 py-2 hover:bg-gray-200 hover:text-gray-800 rounded-md ">
+														   <i class="uil-comment-slash mr-1"></i>   Disable comments
+														  </a> 
+													  </li> 
+													  
+													  <li>
+														<hr class="-mx-2 my-2 ">
+													  </li>
+													  <li>
+														<a href="/deletepost?postID={{post.postID}}"  class="flex items-center px-3 py-2 text-red-500 hover:bg-red-100 hover:text-red-500 rounded-md ">
+														   <i class="uil-trash-alt mr-1"></i>  Delete
+														</a> 
+														</form>
+													  </li>
+													  {% endif %}
+													</ul>
+												</div>
+											  </div>
+											</div>
+					
+											<div uk-lightbox>
+												<a href="{{post.url}}">  
+													<img src="{{post.url}}" alt="">
+												</a>
+											</div>
+											
+					
+											<div class="py-3 px-4 space-y-3"> 
+				
+					
+												<p>
+													<a> {{post.caption}}</a>
+												</p>
+												<hr>
+											<div>
+												
+												<a href="{{post.latest_comment_username}}" class="latest_comment_username_{{post.postID}}">
+													<b>
+													{% if post.latest_comment_username != none %}
+														{{post.latest_comment_username}}
+													{% endif %}
+													</b>
+												</a>
+														
+												<p name="latest_comment" class="latest_comment_{{post.postID}}">
+												
+													{% if post.latest_comment != none %}
+														{{post.latest_comment}}
+													{% endif %}
+												</p>
+											</div>
+											<div class="flex space-x-4 lg:font-bold">
+
+												<a name="{{ post.postID }}" style="font-size:25px;" class="likin" id="co">
+													<button id="button{{post.postID}}" class="button{{post.postID}}" name="button{{post.postID}}">
+														{% if post.postID in liked_posts %}
+															Liked
+														{% else %}
+															Like
+														{% endif %}
+													</button>
+													
+												</a>
+												<div>
+													<a href="/postlikes?postID={{post.postID}}">
+													<button id="like{{post.postID}}" class="like{{post.postID}}" name="like{{post.postID}}" style="font-size:15px;">{{post.number_of_likes}}</button>
+													</a>
+												</div>
+												
+												<!-- <a href="{{post.url}}" class="flex items-center space-x-2 flex-1 justify-end" download>
+													<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="25" height="25" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><g fill="currentColor"><path d="M8.5 1.5A1.5 1.5 0 0 1 10 0h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h6c-.314.418-.5.937-.5 1.5v6h-2a.5.5 0 0 0-.354.854l2.5 2.5a.5.5 0 0 0 .708 0l2.5-2.5A.5.5 0 0 0 10.5 7.5h-2v-6z"/></g></svg>
+													
+												</a> -->
+											</div>
+															
+												<div class="bg-gray-100 bg-gray-100 rounded-full rounded-md relative ">
+													<input type="text" placeholder="post a comment" class="bg-transparent max-h-10 shadow-none">
+													<div class="absolute bottom-0 flex h-full items-center right-0 right-3 text-xl space-x-2">
+														<a href="#"> <i class="uil-image"></i></a>
+														<a href="#"> <i class="uil-video"></i></a>
+													</div>
+												</div>
+					
+											</div>
+					
+										</div>
+										{% endfor %}
+					
+				   
+				
+									</div>
+				
+									<!-- right sidebar-->
+									<div class="lg:w-5/12">
+				
+										<div class="bg-white  shadow-md rounded-md overflow-hidden">
+				
+											<div class="bg-gray-50  border-b border-gray-100 flex items-baseline justify-between py-4 px-6 ">
+												<h2 class="font-semibold text-lg">Followers</h2>
+												
+											</div>
+										   
+											<div class="divide-gray-300 divide-gray-50 divide-opacity-50 divide-y px-4 ">
+												{% for follower in followers reversed %}
+												<div class="flex items-center justify-between py-3">
+													<div class="flex flex-1 items-center space-x-4">
+														<a href="/{{follower.username}}">
+															<img src="{{follower.profile_image}}" class="bg-gray-200 rounded-full w-10 h-10">
+														</a>
+														<div class="flex flex-col">
+															<span class="block font-semibold"> {{follower.username}} </span>
+															<span class="block text-sm"> {{follower.email}} </span>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+				
+											</div>
+				
+											<br>
+											<br>
+				
+											<div class="bg-white  shadow-md rounded-md overflow-hidden">
+					
+												<div class="bg-gray-50  border-b border-gray-100 flex items-baseline justify-between py-4 px-6 ">
+													<h2 class="font-semibold text-lg">Following</h2>
+													
+												</div>
+											   
+												<div class="divide-gray-300 divide-gray-50 divide-opacity-50 divide-y px-4 ">
+													{% for following in following reversed %}
+													<div class="flex items-center justify-between py-3">
+														<div class="flex flex-1 items-center space-x-4">
+															<a href="/{{following.username}}">
+																<img src="{{following.profile_image}}" class="bg-gray-200 rounded-full w-10 h-10">
+															</a>
+															<div class="flex flex-col">
+																<span class="block font-semibold"> {{following.username}} </span>
+																<span class="block text-sm"> {{following.email}} </span>
+															</div>
+														</div>
+														
+														<a href="/unfollow?unfollowuser={{following.username}}" style="color: red;" class="border border-gray-200 font-semibold px-4 py-1 rounded-full hover:bg-pink-600 hover:text-white hover:border-pink-600 "> Unfollow </a>
+													</div>
+													{% endfor %}
+													
+												</div>
+					
+											</div>
+					
+				
+									  
+				
+									</div>
+				
+								</div>               
+						  
+				
+							</div>		
+							<!-- <div class="col-lg-3">
+								<aside class="sidebar static">
+									
+								</aside>
+							</div> -->
+							<!-- sidebar -->
+						</div>	
+					</div>
+				</div>
+			</div>
+		</div>	
+	</section>
+
+	
+	
+	<script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'assets/js/tippy.all.min.js' %}"></script>  
+    <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/uikit.js' %}"></script>
+    <script src="{% static 'assets/js/simplebar.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    // AJAX CALL
+    $('.likin').click(function(){
+        var $likin = $(this);
+        var $button = $likin.find('.button'+$(this).attr('name'));
+        var $likes  = $('.like' + $likin.attr('name'));
+        $.ajax({
+                 type: "POST",
+                 url: "{% url 'likepost' %}",
+                 data: {'postID': $(this).attr('name'),'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                 dataType: "json",
+                 success: function(response) {
+                    if (response.status == 1) {
+                        $button.text('Liked'); 
+                    } else {
+                        $button.text('Like'); 
+                    }
+                   $likes.text(response.number_of_likes);
+                }
+            });
+      })
+    </script>
+	    <script>
+			// AJAX CALL
+			$('.comment').click(function(){
+				var $comment = $(this);
+				var $text = $('.comment_' + $comment.attr('name'));
+				
+				
+				$.ajax({
+						 type: "POST",
+						 url: "{% url 'comment' %}",
+						 data: {'postID': $(this).attr('name'),'comment':$text.val(),'csrfmiddlewaretoken': '{{ csrf_token }}'},
+						 dataType: "json",
+						 success: function(response) {
+							if (response.status == 1) {
+								var $latest_comment = $('.latest_comment_' + $comment.attr('name'));
+								$latest_comment.text($text.val());
+								var $latest_comment_username = $('.latest_comment_username_' + $comment.attr('name'));
+								$latest_comment_username.text(response.username);
+								$latest_comment_username.attr('href', response.username);
+							} 
+						   $text.val("");
+						}
+					});
+			  })
+			</script>
+</body>	
+
+
+</html>

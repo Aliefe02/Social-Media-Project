@@ -1,0 +1,121 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'assets/images/favicon.png' %}" rel="icon" type="image/png">
+    <title>Upload Post</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/uikit.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/tailwind.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        
+</head>
+
+<body class="bg-gray-100">
+
+
+    <div id="wrapper" class="flex flex-col justify-between h-screen">
+
+        <!-- header-->
+        <div class="bg-white py-4 shadow dark:bg-gray-800">
+            <div class="max-w-6xl mx-auto">
+
+
+                <div class="flex items-center lg:justify-between justify-around">
+
+                    <a href="/">
+                       <b><h1 style="font-size: 1.5rem;">Game Media</h1></b>
+                    </a>
+
+                    <div class="capitalize flex font-semibold hidden lg:block my-2 space-x-3 text-center text-sm">
+                        
+                        <a href="/profile" class="bg-pink-500 pink-500 px-6 py-3 rounded-md shadow text-white">Profile</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Content-->
+        <div class="lg:w-5/12" style="margin: 0 auto;" >
+
+            <div class="bg-white  shadow-md rounded-md overflow-hidden">
+
+                <div class="bg-gray-50  border-b border-gray-100 flex items-baseline justify-between py-4 px-6 ">
+                    <h2 class="font-semibold text-lg">{{count}} {{message}} </h2>
+                    
+                </div>
+               
+                <br>
+
+                <div class="bg-white  shadow-md rounded-md overflow-hidden">
+
+
+                    
+                    <div class="divide-gray-300 divide-gray-50 divide-opacity-50 divide-y px-4 ">
+                        {% for profile in profiles %}
+                        <div class="flex items-center justify-between py-3">
+                            <div class="flex flex-1 items-center space-x-4">
+                                <a href="/{{profile.username}}">
+                                    <img src="{{profile.profile_image}}" class="bg-gray-200 rounded-full w-10 h-10">
+                                </a>
+                                <div class="flex flex-col">
+                                    <a href="/{{profile.username}}">
+                                    <span class="block capitalize font-semibold"> {{profile.username}} </span>
+                                    </a>
+                                </div>
+                            </div>
+                            {% if ownedProfile == 1 %}
+                                <a href="/unfollow?unfollowuser={{following.username}}" style="color: red;" class="border border-gray-200 font-semibold px-4 py-1 rounded-full hover:bg-pink-600 hover:text-white hover:border-pink-600 "> Unfollow </a>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                        
+                    </div>
+
+                </div>
+                <br>
+                <br>
+            </div>
+            <br>
+            <br>
+        </div>
+        
+        <!-- Footer -->
+
+        <div class="lg:mb-5 py-3 uk-link-reset">
+            <div class="flex flex-col items-center justify-between lg:flex-row max-w-6xl mx-auto lg:space-y-0 space-y-3">
+                <div class="flex space-x-2 text-gray-700 uppercase">
+                    <a href="#"> About</a>
+                    <a href="#"> Help</a>
+                    <a href="#"> Terms</a>
+                    <a href="#"> Privacy</a>
+                </div>
+                <p class="capitalize"> © copyright 2023 by Gamedia</p>
+            </div>
+        </div>
+
+    </div>
+    <script src="{% static 'assets/js/tippy.all.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/uikit.js' %}"></script>
+    <script src="{% static 'assets/js/simplebar.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+
+</body>
+
+
+</html>
