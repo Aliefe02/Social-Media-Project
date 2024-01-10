@@ -7,13 +7,13 @@ This project was supposed to be a social media platform specific for gamers. My 
 
 This project has 2 applications. It was aimed for web and mobile so I created 2 different apps. One is frontend app that user interacts. Other is a Django Rest Framework with all the APIs. Frontend app uses these APIs to work.
 
-Features:
-Login / Register
-Connect Steam Account
-Follow / Unfollow other accounts
-Upload a post
-Like / Comment
-Settings
+Features:<br />
+Login / Register<br />
+Connect Steam Account<br />
+Follow / Unfollow other accounts<br />
+Upload a post<br />
+Like / Comment<br />
+Settings<br />
 
 
 
