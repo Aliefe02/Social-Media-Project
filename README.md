@@ -14,6 +14,7 @@ Follow / Unfollow other accounts<br />
 Upload a post<br />
 Like / Comment<br />
 Settings<br />
+Block IP for 30 min in case of brute force attack
 
 
 
